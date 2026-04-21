@@ -83,7 +83,7 @@ export const Home: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-cosmic-dark via-transparent to-transparent opacity-60 z-10"></div>
                 {/* OPTIMIZATION: Reduced width URL (w=800), added lazy loading=eager (as it is LCP), and explicit size */}
                 <img
-                  src="/assets/d4429e202109867.6680403deccea.jpg"
+                  src={`${import.meta.env.BASE_URL}assets/d4429e202109867.6680403deccea.jpg`}
                   alt="Hero visual"
                   width="800"
                   height="800"
