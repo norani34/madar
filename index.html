@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>MADAR | مدار</title>
+    <meta name="description" content="MADAR Marketing Agency - Orbiting Success" />
+    <meta name="theme-color" content="#020617" />
+    
+    <!-- PERFOMANCE: Preload critical assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" as="style">
+    <link rel="preload" href="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=60&w=1200&auto=format&fit=crop" as="image">
+    
+    <!-- Fonts: Cairo (headings) and Tajawal (body) for modern Arabic/English look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ['Cairo', 'sans-serif'],
+              body: ['Tajawal', 'sans-serif'],
+            },
+            colors: {
+              'cosmic-dark': '#020617', // Deeper black
+              'cosmic-blue': '#0F172A', // Slate 900
+              'cosmic-light': '#1E293B', // Slate 800
+              'star-blue': '#60A5FA', // Cyan → bluer highlight (reduce green cast)
+              'nebula-purple': '#8B5CF6', // Violet
+              'orbit-blue': '#3B82F6', // Primary Blue
+              'deep-space': '#050B14',
+            },
+            animation: {
+              'spin-slow': 'spin 60s linear infinite',
+              'spin-slower': 'spin 120s linear infinite',
+              'spin-reverse': 'spin-reverse 30s linear infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 8s ease-in-out infinite',
+              'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+              'shooting-star': 'shooting-star 5s ease-in-out infinite',
+              'twinkle': 'twinkle 4s ease-in-out infinite',
+              'galaxy-rotate': 'galaxy-rotate 200s linear infinite',
+              'shimmer': 'shimmer 3s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              'spin-reverse': {
+                '0%': { transform: 'rotate(360deg)' },
+                '100%': { transform: 'rotate(0deg)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                '50%': { opacity: '0.6', transform: 'scale(1.1)' },
+              },
+              'shooting-star': {
+                '0%': { transform: 'translateX(0) translateY(0) rotate(-45deg)', opacity: '0' },
+                '10%': { opacity: '1' },
+                '20%': { transform: 'translateX(-500px) translateY(500px) rotate(-45deg)', opacity: '0' },
+                '100%': { opacity: '0' },
+              },
+              'twinkle': {
+                 '0%, 100%': { opacity: '1' },
+                 '50%': { opacity: '0.3' },
+              },
+              'galaxy-rotate': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' }
+              },
+              shimmer: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Tajawal', sans-serif;
+        background-color: #020617;
+        color: #E2E8F0;
+        overflow-x: hidden;
+        /* Improve text rendering */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Mobile tap highlight fix */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cairo', sans-serif;
+      }
+      
+      /* --- ARABIC TYPOGRAPHY FIXES --- */
+      html[lang="ar"] body {
+        letter-spacing: normal !important;
+      }
+      
+      html[lang="ar"] h1, 
+      html[lang="ar"] h2, 
+      html[lang="ar"] h3, 
+      html[lang="ar"] h4, 
+      html[lang="ar"] h5, 
+      html[lang="ar"] h6 {
+        line-height: 1.5 !important; /* Ensure Arabic descenders have space */
+        letter-spacing: 0 !important; /* Prevent disjointed ligatures */
+      }
+
+      /* Fix bg-clip-text clipping */
+      .bg-clip-text, .text-transparent {
+        padding-bottom: 0.2em !important; /* Extra padding for bottom glyphs */
+        line-height: 1.6 !important; /* Increase line height for clipped text */
+        display: inline-block; /* Helps with padding application */
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020617; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3B82F6; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2563EB; 
+      }
+
+      /* Star Field Animations - Hardware Accelerated */
+      .star-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-repeat: repeat;
+        background-position: center;
+        z-index: -1;
+        will-change: transform; /* Performance optimization */
+      }
+      
+      .stars-move-y {
+        animation: animStar 100s linear infinite;
+      }
+
+      @keyframes animStar {
+        from { transform: translateY(0px) translateZ(0); }
+        to { transform: translateY(-2000px) translateZ(0); }
+      }
+
+      /* Shooting Star Styling */
+      .shooting-star {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+        border-radius: 999px;
+        filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+        width: 150px;
+        opacity: 0;
+        z-index: -1;
+      }
+
+      /* Enhanced Glass Panel for that "High-End" look */
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(59, 130, 246, 0.2); /* Slight blue tint border */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      }
+      
+      .glass-card-hover:hover {
+        background: rgba(30, 41, 59, 0.6);
+        border-color: rgba(100, 255, 218, 0.5);
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);
+      }
+
+      /* 2034 ULTRA FUTURISTIC STYLES - OPTIMIZED FOR MOBILE */
+      .glass-2034 {
+        background: rgba(255, 255, 255, 0.03); 
+        
+        /* Mobile: Very Low Blur for High FPS */
+        backdrop-filter: blur(8px) saturate(110%);
+        -webkit-backdrop-filter: blur(8px) saturate(110%);
+        
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        
+        box-shadow: 
+          0 4px 30px rgba(0, 0, 0, 0.1),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+          
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Promote layer for composition to reduce repaints */
+        transform: translateZ(0); 
+      }
+
+      /* Desktop: Higher Blur where hardware allows */
+      @media (min-width: 768px) {
+        .glass-2034 {
+           backdrop-filter: blur(30px) saturate(150%);
+           -webkit-backdrop-filter: blur(30px) saturate(150%);
+        }
+      }
+      
+      .glass-2034::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg, 
+          transparent, 
+          rgba(255, 255, 255, 0.1), 
+          rgba(59, 130, 246, 0.08),
+          transparent
+        );
+        transition: 0.5s;
+        pointer-events: none;
+      }
+      
+      @media (hover: hover) {
+        .glass-2034:hover::before {
+          left: 100%;
+          transition: 0.7s;
+        }
+
+        .glass-2034:hover {
+          background: rgba(255, 255, 255, 0.07);
+          border-color: rgba(59, 130, 246, 0.22);
+          transform: translateY(-5px) scale(1.01); /* Reduced movement for smoother feel */
+          box-shadow: 
+            0 20px 40px rgba(0,0,0,0.4),
+            0 0 20px rgba(59, 130, 246, 0.06),
+            inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+      }
+
+      .neon-icon-glow {
+        filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.28));
+      }
+
+      .holographic-border::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(59,130,246,0.28), rgba(96,165,250,0.14), rgba(255,255,255,0.1));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      
+      .footer-gradient {
+        background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, rgba(2, 6, 23, 0) 70%);
+      }
+      
+      .planet-gradient {
+        background: radial-gradient(circle at 30% 30%, #3B82F6, #0F172A, #000);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
