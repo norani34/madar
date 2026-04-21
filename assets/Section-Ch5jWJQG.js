@@ -1,0 +1,1 @@
+import{j as m}from"./index-8_buvjTJ.js";const p=({children:s,className:x="",id:t})=>m.jsx("section",{id:t,className:`py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ${x}`,children:s});export{p as S};
